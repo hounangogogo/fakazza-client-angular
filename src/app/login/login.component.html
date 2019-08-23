@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <h1>Login</h1>
+
+  <div>
+    <label for="username">Username</label>
+    <input [(ngModel)]="username" id="username" placeholder="Username" class="form-control">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input [(ngModel)]="password" id="password" placeholder="Password" class="form-control">
+  </div>
+  <div>
+    <button (click)="login(username, password)" class="btn btn-primary form-control">Login</button>
+  </div>
+  <div>
+    <a href="#">Forgot Password</a>
+  </div>
+</div>

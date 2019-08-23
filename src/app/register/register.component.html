@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <h1>Register</h1>
+
+
+  <!-- Alert Tag for Password check (Default is none)-->
+  <div style="display: none" id="passwordWrong" class="alert alert-danger">
+    <strong>Warning!</strong> Password do not match
+  </div>
+  <div style="display: none" id="usernameTaken" class="alert alert-danger">
+    <strong>Warning!</strong> Username has been taken
+  </div>
+  <!--------------------------------------------------->
+
+
+  <div>
+    <label for="username">Username</label>
+    <input [(ngModel)]="username" id="username" placeholder="Username" class="form-control">
+  </div>
+  <div>
+    <label for="password1">Password</label>
+    <input [(ngModel)]="password" id="password1" placeholder="Password" class="form-control">
+  </div>
+  <div>
+    <label for="password2">Re-enter Password</label>
+    <input [(ngModel)]="password2" id="password2" placeholder="Enter you password again" class="form-control">
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input [(ngModel)]="email" id="email" type="email" placeholder="Email" class="form-control">
+  </div>
+  <button (click)="register(username, password, password2, email)" class="btn btn-primary form-control">Register</button>
+</div>
