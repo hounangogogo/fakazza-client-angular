@@ -1,6 +1,11 @@
 <div class="container-fluid">
   <h1>Login</h1>
 
+  <!-- Alert Tag for loginError (Default is none)-->
+  <div style="display: none" id="loginError" class="alert alert-danger">
+    <strong>Warning!</strong> Please check your password and username
+  </div>
+
   <div>
     <label for="username">Username</label>
     <input [(ngModel)]="username" id="username" placeholder="Username" class="form-control">
