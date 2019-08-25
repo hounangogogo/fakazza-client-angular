@@ -16,12 +16,15 @@ export class LoginComponent implements OnInit {
               private userService: UserServiceClient) { }
 
   login = (name, code) => {
-    const user = {
+
+    // Use the value from input field, and create a user object
+    const userObj = {
       username: name,
       password: code
     };
 
-    this.userService.login(user)
+    // Call login function from UserService
+    this.userService.login(userObj)
       .then(response => {
         if (response.status === 200) {
           this.router.navigate(['profile']);

@@ -2,16 +2,15 @@
   <h1>Register</h1>
 
 
-  <!-- Alert Tag for Password check (Default is none)-->
+  <!-- Alert Tag for Password, and Username check (Default is none)-->
   <div style="display: none" id="passwordWrong" class="alert alert-danger">
     <strong>Warning!</strong> Password do not match
   </div>
   <div style="display: none" id="usernameTaken" class="alert alert-danger">
     <strong>Warning!</strong> Username has been taken
   </div>
-  <!--------------------------------------------------->
 
-
+  <!-- Input fields-->
   <div>
     <label for="username">Username</label>
     <input [(ngModel)]="username" id="username" placeholder="Username" class="form-control">

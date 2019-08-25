@@ -10,6 +10,8 @@ import { ProfileComponent } from './profile/profile.component';
 import {routing} from './app.routing';
 import {FormsModule} from '@angular/forms';
 import {UserServiceClient} from './services/user.service.client';
+import {CourseServiceClient} from './services/course.service.client';
+import { FakazzaPageComponent } from './fakazza-page/fakazza-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import {UserServiceClient} from './services/user.service.client';
     WhiteBoardComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    FakazzaPageComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import {UserServiceClient} from './services/user.service.client';
     FormsModule
   ],
   providers: [
-    UserServiceClient
+    UserServiceClient,
+    CourseServiceClient
   ],
   bootstrap: [AppComponent]
 })

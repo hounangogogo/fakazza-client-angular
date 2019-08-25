@@ -17,13 +17,19 @@ export class RegisterComponent implements OnInit {
               private userService: UserServiceClient) { }
 
   register = (name, code1, code2, mail) => {
+
+    // Check the password1 and password2 are the same or not
     if (code1 === code2) {
-      const user = {
+
+      // if password1 and password2 match, create userObject and sent it to UserService
+      const userObj = {
         username: name,
         password: code1,
         email: mail
       };
-      this.userService.register(user)
+
+      // call register function from UserService
+      this.userService.register(userObj)
         .then(response => {
           if (response.status === 200) {
             this.router.navigate(['profile']);
@@ -35,6 +41,7 @@ export class RegisterComponent implements OnInit {
           }
         });
     }
+    // if password1 and password2 do not match
     if (code1 !== code2) {
       const x = document.getElementById('passwordWrong');
       x.style.display = 'block';

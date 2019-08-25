@@ -1,6 +1,59 @@
 <div>
-
   <h2>Welcome {{currentUser.username}}</h2>
+
+  <div>
+    <label for="username">Username</label>
+    <input id="username" value={{currentUser.username}} disabled="disabled" class="form-control">
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input id="email" value={{currentUser.email}} disabled="disabled" class="form-control">
+  </div>
+
+  <!--  Course Enroll Form-->
+  <h2>Enroll or Create Course</h2>
+
+  <div>
+    <label>School</label>
+    <select ngModel (ngModelChange)="selectSchool($event)" class="form-control">
+      <option *ngFor="let school of schools"
+              [ngValue]="school">
+        {{school.name}}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label>Major</label>
+    <select ngModel (ngModelChange)="selectMajor($event)" class="form-control">
+      <option *ngFor="let major of selectedSchool.majors">
+        {{major.name}}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label>Course</label>
+    <select ngModel (ngModelChange)="selectCourse($event)" class="form-control">
+      <option *ngFor="let course of selectedMajor.courses">
+        {{course.name}}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label>Roll</label>
+    <select class="form-control">
+      <option value="Professor">Professor</option>
+      <option value="TA">TA</option>
+      <option value="Student">Student</option>
+    </select>
+  </div>
+
+  <div>
+    <button (click)="enroll(selectedCourse)" class="form-control btn btn-success">Enroll</button>
+  </div>
 
 </div>
 

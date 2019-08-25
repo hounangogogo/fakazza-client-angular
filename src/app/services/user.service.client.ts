@@ -4,7 +4,8 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class UserServiceClient {
 
-  register = (user) =>
+  // Register function send the userObj to Spring Server
+  register = (userObj) =>
     fetch('http://localhost:8080/register', {
       method: 'post',
       credentials: 'include',
@@ -12,10 +13,12 @@ export class UserServiceClient {
         'content-type': 'application/json',
         'Access-Control-Allow-Credentials': 'true'
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(userObj)
     })
 
-  login = (user) =>
+
+  // Login function send the userObj to Spring Server
+  login = (userObj) =>
     fetch('http://localhost:8080/login', {
       method: 'post',
       credentials: 'include',
@@ -23,9 +26,10 @@ export class UserServiceClient {
         'content-type': 'application/json',
         'Access-Control-Allow-Credentials': 'true'
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(userObj)
     })
 
+  // Get the currentUser from session
   getCurrentUser = () =>
     fetch('http://localhost:8080/getcurrentUser', {
       credentials: 'include'
