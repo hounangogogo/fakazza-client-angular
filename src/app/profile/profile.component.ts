@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
   selectedCourse = {}
 
 
+
   constructor(private router: Router,
               private userService: UserServiceClient,
               private courseService: CourseServiceClient) { }
@@ -58,7 +59,6 @@ export class ProfileComponent implements OnInit {
       }
     }
     console.log(this.selectedCourse);
-
   }
 
   enroll = (course) => {
