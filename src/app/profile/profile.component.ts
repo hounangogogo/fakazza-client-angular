@@ -12,7 +12,8 @@ export class ProfileComponent implements OnInit {
   schools = [];
   courses = [];
   currentUser = {
-    id: undefined
+    id: undefined,
+    courses: undefined
   }
   selectedSchool = {
     majors: undefined
@@ -69,10 +70,9 @@ export class ProfileComponent implements OnInit {
     this.courseService.enroll(userId, courseId)
       .then(response => {
         if (response.status === 200) {
-          this.router.navigate(['fakazza']);
+          return this.userService.getCourses();
         }
-      }).then(() => this.userService.getCourses())
-        .then(courses => this.courses = courses);
+      }).then(() =>  this.router.navigate(['fakazza']));
   }
 
   ngOnInit() {

@@ -14,7 +14,7 @@
   <h2>Courses Enrolled</h2>
   <div>
     <ul class="list-group">
-      <li *ngFor="let course of courses" class="list-group-item">
+      <li *ngFor="let course of currentUser.courses" class="list-group-item">
         {{course.name}}
       </li>
     </ul>
