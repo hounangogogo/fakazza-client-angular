@@ -9,8 +9,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  schools = []
-  courses = []
+  schools = [];
+  courses = [];
   currentUser = {
     id: undefined
   }
@@ -62,6 +62,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.selectedCourse);
   }
 
+  // bugs
   enroll = (course) => {
     const userId = this.currentUser.id;
     const courseId = course.id;
@@ -70,7 +71,8 @@ export class ProfileComponent implements OnInit {
         if (response.status === 200) {
           this.router.navigate(['fakazza']);
         }
-      });
+      }).then(() => this.userService.getCourses())
+        .then(courses => this.courses = courses);
   }
 
   ngOnInit() {
