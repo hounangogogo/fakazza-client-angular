@@ -11,6 +11,14 @@
     <input id="email" value={{currentUser.email}} disabled="disabled" class="form-control">
   </div>
 
+  <h2>Courses Enrolled</h2>
+  <div>
+    <ul class="list-group">
+      <li *ngFor="let course of courses" class="list-group-item">
+        {{course.name}}
+      </li>
+    </ul>  </div>
+
   <!--  Course Enroll Form-->
   <h2>Enroll or Create Course</h2>
 

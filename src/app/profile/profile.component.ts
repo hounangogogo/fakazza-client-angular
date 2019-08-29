@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   schools = []
+  courses = []
   currentUser = {
     id: undefined
   }
@@ -78,6 +79,8 @@ export class ProfileComponent implements OnInit {
 
     this.courseService.getSchools()
       .then(schools => this.schools = schools);
-  }
 
+    this.userService.getCourses()
+        .then(courses => this.courses = courses);
+  }
 }

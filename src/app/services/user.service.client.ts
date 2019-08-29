@@ -4,6 +4,16 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class UserServiceClient {
 
+    getCourses = () =>
+        fetch('http://localhost:8080/getCourses', {
+            method: 'get',
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true'
+            }
+        }).then(response => response.json())
+
   // Register function send the userObj to Spring Server
   register = (userObj) =>
     fetch('http://localhost:8080/register', {
