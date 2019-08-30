@@ -59,11 +59,18 @@
 
   <div>
     <label>Roll</label>
-    <select class="form-control">
+    <select ngModel (ngModelChange)="selectRoll($event)" class="form-control">
+      <option value="" selected disabled hidden>--select here--</option>
       <option value="Professor">Professor</option>
       <option value="TA">TA</option>
       <option value="Student">Student</option>
     </select>
+  </div>
+
+  <div style="display: none" id="isProfessor">
+    <label>Add Course Here</label>
+    <input [(ngModel)]="newCourse" id="newCourse" placeholder="Create New Course" class="form-control">
+    <button (click)="createCourse(newCourse)" class="form-control btn btn-info">Create</button>
   </div>
 
   <!-- Add create course field once you selected professor -->

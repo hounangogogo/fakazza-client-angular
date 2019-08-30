@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit {
   }
 
   selectedMajor = {
-    courses: undefined
+    courses: undefined,
+    id: undefined
   }
   selectedCourse = {}
 
@@ -62,6 +63,31 @@ export class ProfileComponent implements OnInit {
     }
     console.log(this.selectedCourse);
   }
+
+  selectRoll = (roll) => {
+    console.log(roll);
+    if (roll === 'Professor') {
+      const x = document.getElementById('isProfessor');
+      x.style.display = 'block';
+    }
+    if (roll !== 'Professor') {
+      const x = document.getElementById('isProfessor');
+      x.style.display = 'none';
+    }
+  }
+
+
+  // Create Course
+  createCourse = (newCourse) => {
+    this.userService.createCourse(this.currentUser.id, this.selectedMajor.id, newCourse)
+        .then(response => {
+          if (response.status === 200) {
+            this.router.navigate(['fakazza']);
+          }
+        });
+  }
+
+
 
   // bugs
   enroll = (course) => {

@@ -4,6 +4,18 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class UserServiceClient {
 
+
+    createCourse = (userId, majorId, courseName) =>
+        fetch('http://localhost:8080/createCourse' + '/' + userId + '/' + majorId, {
+            method: 'post',
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true'
+            },
+            body: JSON.stringify(courseName)
+        }).then(response => response.json())
+
     getCourses = () =>
         fetch('http://localhost:8080/getCourses', {
             method: 'get',
