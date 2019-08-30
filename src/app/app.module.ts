@@ -20,7 +20,7 @@ import { FakazzaPageComponent } from './fakazza-page/fakazza-page.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    FakazzaPageComponent
+    FakazzaPageComponent,
   ],
   imports: [
     BrowserModule,

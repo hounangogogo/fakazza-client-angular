@@ -78,12 +78,15 @@ export class ProfileComponent implements OnInit {
 
 
   // Create Course
-  createCourse = (newCourse) => {
-    this.userService.createCourse(this.currentUser.id, this.selectedMajor.id, newCourse)
+  createCourse = (courseName) => {
+    this.userService.createCourse(this.currentUser.id, this.selectedMajor.id, courseName)
         .then(response => {
           if (response.status === 200) {
+            console.log(response)
             this.router.navigate(['fakazza']);
           }
+        }, () => {
+          console.log('wrong');
         });
   }
 

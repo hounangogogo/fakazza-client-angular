@@ -13,8 +13,8 @@ export class UserServiceClient {
                 'content-type': 'application/json',
                 'Access-Control-Allow-Credentials': 'true'
             },
-            body: JSON.stringify(courseName)
-        }).then(response => response.json())
+            body: courseName
+        })
 
     getCourses = () =>
         fetch('http://localhost:8080/getCourses', {
