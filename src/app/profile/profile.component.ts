@@ -23,7 +23,13 @@ export class ProfileComponent implements OnInit {
     courses: undefined,
     id: undefined
   }
-  selectedCourse = {}
+  selectedCourse = {
+    id: undefined
+  }
+
+  createdCourse = {
+    id: undefined
+  }
 
 
 
@@ -79,16 +85,10 @@ export class ProfileComponent implements OnInit {
 
   // Create Course
   createCourse = (courseName) => {
-    this.userService.createCourse(this.currentUser.id, this.selectedMajor.id, courseName)
-        .then(response => {
-          if (response.status === 200) {
-            console.log(response)
-            const url = '/fakazza/' + this.selectedMajor.id + '/' + this.currentUser.id;
-            this.router.navigateByUrl(url);
-          }
-        }, () => {
-          console.log('wrong');
-        });
+    this.courseService.createCourse(this.currentUser.id, this.selectedMajor.id, courseName)
+        .then(createdCourse => this.createdCourse = createdCourse)
+        .then(() =>
+            this.router.navigateByUrl('/fakazza/' + this.currentUser.id + '/' + this.createdCourse.id));
   }
 
 
@@ -97,11 +97,11 @@ export class ProfileComponent implements OnInit {
   enroll = (course) => {
     const userId = this.currentUser.id;
     const courseId = course.id;
-    const url = '/fakazza/' + this.selectedMajor.id + '/' + this.currentUser.id;
+    const url = '/fakazza/' + this.currentUser.id + '/' + this.selectedCourse.id;
     this.courseService.enroll(userId, courseId)
       .then(response => {
         if (response.status === 200) {
-          return this.userService.getCourses();
+          return this.courseService.getCourses();
         }
       }).then(() =>  this.router.navigateByUrl(url));
   }
@@ -113,7 +113,7 @@ export class ProfileComponent implements OnInit {
     this.courseService.getSchools()
       .then(schools => this.schools = schools);
 
-    this.userService.getCourses()
+    this.courseService.getCourses()
         .then(courses => this.courses = courses);
   }
 }
