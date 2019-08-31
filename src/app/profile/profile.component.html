@@ -15,7 +15,7 @@
   <div>
     <ul class="list-group">
       <li *ngFor="let course of currentUser.courses" class="list-group-item">
-        {{course.name}}
+        <a href="/fakazza/{{currentUser.id}}/{{course.id}}">{{course.name}}</a>
       </li>
     </ul>
   </div>
