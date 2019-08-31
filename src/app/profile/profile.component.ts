@@ -83,7 +83,8 @@ export class ProfileComponent implements OnInit {
         .then(response => {
           if (response.status === 200) {
             console.log(response)
-            this.router.navigate(['fakazza']);
+            const url = '/fakazza/' + this.selectedMajor.id + '/' + this.currentUser.id;
+            this.router.navigateByUrl(url);
           }
         }, () => {
           console.log('wrong');
@@ -96,12 +97,13 @@ export class ProfileComponent implements OnInit {
   enroll = (course) => {
     const userId = this.currentUser.id;
     const courseId = course.id;
+    const url = '/fakazza/' + this.selectedMajor.id + '/' + this.currentUser.id;
     this.courseService.enroll(userId, courseId)
       .then(response => {
         if (response.status === 200) {
           return this.userService.getCourses();
         }
-      }).then(() =>  this.router.navigate(['fakazza']));
+      }).then(() =>  this.router.navigateByUrl(url));
   }
 
   ngOnInit() {

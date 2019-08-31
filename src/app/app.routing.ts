@@ -11,8 +11,8 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'fakazza', component: FakazzaPageComponent}
-];
+  {path: 'fakazza/:uid/:cid', component: FakazzaPageComponent}
+  ];
 
 
 
