@@ -1,6 +1,23 @@
 export class CourseServiceClient {
 
 
+
+
+    dropCourse = (courseId, userId) => {
+        console.log(courseId);
+        console.log(userId);
+        return fetch('http://localhost:8080/api/dropCourse' + '/' + courseId + '/' + userId, {
+            method: 'delete',
+            headers: {
+                'content-type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Origin': 'true'
+            },
+            credentials: 'include'
+        }).then(response => response.json())
+
+    }
+
   getCourseById = (courseId) => {
     return fetch('http://localhost:8080/api/getCourseById' + '/' + courseId, {
       method: 'get',

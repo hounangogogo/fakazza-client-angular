@@ -16,6 +16,7 @@
     <ul class="list-group">
       <li *ngFor="let course of currentUser.courses" class="list-group-item">
         <a href="/fakazza/{{currentUser.id}}/{{course.id}}">{{course.name}}</a>
+        <button (click)="dropCourse(course)" class="btn btn-danger float-right">Drop</button>
       </li>
     </ul>
   </div>

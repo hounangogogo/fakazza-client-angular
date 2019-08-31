@@ -38,6 +38,12 @@ export class ProfileComponent implements OnInit {
               private courseService: CourseServiceClient) { }
 
 
+  dropCourse = (course) => {
+    this.courseService
+        .dropCourse(course.id, this.currentUser.id)
+        .then(user => this.currentUser = user);
+  }
+
   selectSchool = (school) => {
     console.log(school)
     this.selectedSchool = school;
