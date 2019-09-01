@@ -39,4 +39,14 @@ export class UserServiceClient {
     fetch('http://localhost:8080/getcurrentUser', {
       credentials: 'include'
     }).then(response => response.json())
+
+    getUserById = (userId) =>
+        fetch('http://localhost:8080/getUserById/' + userId, {
+            method: 'get',
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true'
+            }
+        }).then(response => response.json())
 }
