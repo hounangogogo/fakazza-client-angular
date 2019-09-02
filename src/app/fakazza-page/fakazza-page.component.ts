@@ -23,8 +23,11 @@ export class FakazzaPageComponent implements OnInit {
               private userService: UserServiceClient) { }
 
   ngOnInit() {
+    // ---------- Get userId and courseId from URL ----------
     this.userId = this.route.snapshot.paramMap.get('uid');
     this.courseId = this.route.snapshot.paramMap.get('cid');
+
+    // ---------- Services Functions ----------
     this.courseService.getCourseById(this.courseId)
         .then(course => this.course = course)
         .then(() => this.userService.getUserById(this.course.professorId)

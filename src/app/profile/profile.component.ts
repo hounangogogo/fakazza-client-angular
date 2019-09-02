@@ -38,12 +38,8 @@ export class ProfileComponent implements OnInit {
               private courseService: CourseServiceClient) { }
 
 
-  dropCourse = (course) => {
-    this.courseService
-        .dropCourse(course.id, this.currentUser.id)
-        .then(user => this.currentUser = user);
-  }
 
+  // ---------- Select function for selection form ----------
   selectSchool = (school) => {
     console.log(school)
     this.selectedSchool = school;
@@ -89,6 +85,17 @@ export class ProfileComponent implements OnInit {
   }
 
 
+
+
+  // ---------- Services functions ----------
+
+  dropCourse = (course) => {
+    this.courseService
+        .dropCourse(course.id, this.currentUser.id)
+        .then(user => this.currentUser = user);
+  }
+
+
   // Create Course
   createCourse = (courseName) => {
     this.courseService.createCourse(this.currentUser.id, this.selectedMajor.id, courseName)
@@ -99,7 +106,6 @@ export class ProfileComponent implements OnInit {
 
 
 
-  // bugs
   enroll = (course) => {
     const userId = this.currentUser.id;
     const courseId = course.id;
@@ -107,19 +113,27 @@ export class ProfileComponent implements OnInit {
     this.courseService.enroll(userId, courseId)
       .then(response => {
         if (response.status === 200) {
-          return this.courseService.getCourses();
+          return this.userService.getEnrolledCourses();
         }
       }).then(() =>  this.router.navigateByUrl(url));
   }
 
+
+
+
   ngOnInit() {
+    // Get user from session
     this.userService.getCurrentUser()
       .then(user => this.currentUser = user);
+
+
+    this.userService.getEnrolledCourses()
+        .then(courses => this.courses = courses);
+
 
     this.courseService.getSchools()
       .then(schools => this.schools = schools);
 
-    this.courseService.getCourses()
-        .then(courses => this.courses = courses);
+
   }
 }
