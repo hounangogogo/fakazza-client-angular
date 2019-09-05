@@ -19,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CourseInfoComponent } from './course-info/course-info.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     RegisterComponent,
     ProfileComponent,
     FakazzaPageComponent,
+    CourseInfoComponent,
 
   ],
   imports: [

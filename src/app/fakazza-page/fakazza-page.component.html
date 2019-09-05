@@ -49,15 +49,13 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">{{course.name}} -- Professor {{professor.username}}</h1>
+                <h1 class="h2">{{course.name}}</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
                         <button class="btn btn-sm btn-outline-secondary">Q&A</button>
-                        <button class="btn btn-sm btn-outline-secondary">People</button>
+                        <button (click)="loadCourseInfoComponent()" class="btn btn-sm btn-outline-secondary">CourseInfo</button>
                         <button class="btn btn-sm btn-outline-secondary">Course Material</button>
                         <button class="btn btn-sm btn-outline-secondary">statistics</button>
-
-
                     </div>
                     <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
                         <span data-feather="content"></span>
@@ -66,9 +64,15 @@
                 </div>
             </div>
 
-            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+            <div *ngIf="loadCourseInfo">
+                <app-course-info [parentData]="professor"></app-course-info>
+
+            </div>
+
+
 
 
         </main>
     </div>
 </div>
+

@@ -133,7 +133,7 @@ export class ProfileComponent implements OnInit {
 
     this.courseService.getSchools()
       .then(schools => this.schools = schools);
-
-
   }
+
+
 }

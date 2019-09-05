@@ -15,12 +15,20 @@ export class FakazzaPageComponent implements OnInit {
     professorId: undefined
   }
   currentUser = {}
-  professor = {}
+  public professor = {}
+  private loadCourseInfo: boolean;
 
 
   constructor(private route: ActivatedRoute,
               private courseService: CourseServiceClient,
               private userService: UserServiceClient) { }
+
+
+  loadCourseInfoComponent() {
+    this.loadCourseInfo = true;
+  }
+
+
 
   ngOnInit() {
     // ---------- Get userId and courseId from URL ----------
