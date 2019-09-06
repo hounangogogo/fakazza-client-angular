@@ -20,6 +20,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CourseInfoComponent } from './course-info/course-info.component';
+import { CourseMaterialComponent } from './course-material/course-material.component';
+import { HttpClientModule } from '@angular/common/http';
+import {CourseMaterialServiceClient} from './services/course-material.service.client';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { CourseInfoComponent } from './course-info/course-info.component';
     ProfileComponent,
     FakazzaPageComponent,
     CourseInfoComponent,
+    CourseMaterialComponent,
 
   ],
   imports: [
@@ -44,12 +48,13 @@ import { CourseInfoComponent } from './course-info/course-info.component';
     MatIconModule,
     MatListModule,
     BrowserAnimationsModule,
-
+    HttpClientModule
 
   ],
   providers: [
     UserServiceClient,
-    CourseServiceClient
+    CourseServiceClient,
+    CourseMaterialServiceClient
   ],
   bootstrap: [AppComponent]
 })
