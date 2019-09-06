@@ -10,7 +10,7 @@ import {UserServiceClient} from '../services/user.service.client';
 })
 export class FakazzaPageComponent implements OnInit {
   userId: string;
-  courseId: string;
+  public courseId: string;
   course = {
     professorId: undefined
   }

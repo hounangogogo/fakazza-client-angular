@@ -6,8 +6,8 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./course-info.component.css']
 })
 export class CourseInfoComponent implements OnInit {
-  @Input('parentData') public professor;
-
+  @Input('professorData') public professor;
+  @Input('courseData') public courseId;
 
   constructor() { }
 
