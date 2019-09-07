@@ -3,6 +3,7 @@
     <input type="file"
            name="file"
            id="file"
+           accept=".png, .jpg, .jpeg" #avatar
            (change)="handleFileInput($event.target.files)">
     <button (click)="uploadFileToActivity()">Upload</button>
 </div>

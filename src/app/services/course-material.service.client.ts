@@ -9,12 +9,15 @@ export class CourseMaterialServiceClient {
       private httpClient: HttpClient
   ) { }
 
-  postFile(fileToUpload: File) {
+  postFile(fileToUpload) {
     const endpoint = 'http://localhost:8080/fileUpload';
-    const formData: FormData = new FormData();
-    formData.append('fileKey', fileToUpload, fileToUpload.name);
-    return this.httpClient.post(endpoint, formData, {
-      reportProgress: true, observe: 'events'
+    const formdata = new FormData();
+    formdata.append('name', fileToUpload.name);
+    formdata.append('file', fileToUpload);
+
+    return this.httpClient.post(endpoint, formdata, {
+      reportProgress: true,
+      observe: 'events'
     }).pipe(map((event) => {
       switch (event.type) {
         case HttpEventType.UploadProgress:
