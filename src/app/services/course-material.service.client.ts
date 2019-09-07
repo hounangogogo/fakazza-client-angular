@@ -17,14 +17,16 @@ export class CourseMaterialServiceClient {
 
     return this.httpClient.post(endpoint, formdata, {
       reportProgress: true,
+
       observe: 'events'
-    }).pipe(map((event) => {
+    })
+        .pipe(map((event) => {
       switch (event.type) {
         case HttpEventType.UploadProgress:
           const progress = Math.round(100 * event.loaded / event.total);
           return { status: 'progress', message: progress };
         case HttpEventType.Response:
-          return event.body;
+          return event;
         default:
           return `Unhandled event: ${event.type}`;
       }
