@@ -1,9 +1,9 @@
 <div class="form-group">
-    <label for="file">Choose File</label>
-    <input type="file"
-           name="file"
-           id="file"
-           accept=".png, .jpg, .jpeg" #avatar
-           (change)="handleFileInput($event.target.files)">
-    <button (click)="uploadFileToActivity()">Upload</button>
+
+    <div>
+        <input class="btn btn-primary" type="file" name="file" id="file" accept=".png, .jpg, .jpeg"
+               (change)="handleFileInput($event.target.files)">
+    </div>
+
+    <button class="btn btn-success" (click)="uploadFileToActivity()">Upload</button>
 </div>
