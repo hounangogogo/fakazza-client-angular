@@ -23,6 +23,8 @@ import { CourseInfoComponent } from './course-info/course-info.component';
 import { CourseMaterialComponent } from './course-material/course-material.component';
 import { HttpClientModule } from '@angular/common/http';
 import {CourseMaterialServiceClient} from './services/course-material.service.client';
+import { CreateQuestionComponent } from './create-question/create-question.component';
+import {QuestionServiceClient} from './services/question.service.client';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import {CourseMaterialServiceClient} from './services/course-material.service.cl
     FakazzaPageComponent,
     CourseInfoComponent,
     CourseMaterialComponent,
+    CreateQuestionComponent,
 
   ],
   imports: [
@@ -54,7 +57,8 @@ import {CourseMaterialServiceClient} from './services/course-material.service.cl
   providers: [
     UserServiceClient,
     CourseServiceClient,
-    CourseMaterialServiceClient
+    CourseMaterialServiceClient,
+    QuestionServiceClient
   ],
   bootstrap: [AppComponent]
 })

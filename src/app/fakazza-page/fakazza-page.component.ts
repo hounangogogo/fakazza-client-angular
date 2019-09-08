@@ -9,15 +9,19 @@ import {UserServiceClient} from '../services/user.service.client';
   styleUrls: ['./fakazza-page.component.css']
 })
 export class FakazzaPageComponent implements OnInit {
-  userId: string;
+  public userId: string;
   public courseId: string;
+  public questions = []
+  public professor = {};
   course = {
     professorId: undefined
   }
   currentUser = {}
-  public professor = {}
+
   private loadCourseInfo: boolean;
   private loadCourseMaterial: boolean;
+  private loadCreateQuestion: boolean;
+
 
 
   constructor(private route: ActivatedRoute,
@@ -28,12 +32,28 @@ export class FakazzaPageComponent implements OnInit {
   loadCourseInfoComponent() {
     this.loadCourseInfo = true;
     this.loadCourseMaterial = false;
+    this.loadCreateQuestion = false;
   }
 
   loadCourseMaterialComponent() {
-    this.loadCourseInfo = false;
     this.loadCourseMaterial = true;
+    this.loadCourseInfo = false;
+    this.loadCreateQuestion = false;
   }
+
+  loadCreateQuestionComponent() {
+    this.loadCreateQuestion = true;
+    this.loadCourseMaterial = false;
+    this.loadCourseInfo = false;
+
+  }
+
+
+  updateQuestion(event) {
+    this.courseService.getQuestionsForCourse(this.courseId)
+        .then(questions => this.questions = questions);
+  }
+
 
   ngOnInit() {
     // ---------- Get userId and courseId from URL ----------
@@ -47,6 +67,9 @@ export class FakazzaPageComponent implements OnInit {
             .then(professor => this.professor = professor));
     this.userService.getUserById(this.userId)
         .then(user => this.currentUser = user);
+
+    this.courseService.getQuestionsForCourse(this.courseId)
+        .then(questions => this.questions = questions);
   }
 
 }

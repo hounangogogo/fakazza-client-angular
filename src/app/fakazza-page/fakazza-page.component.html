@@ -4,8 +4,13 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link">
                             <p>Hi {{currentUser.username}}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <button (click)="loadCreateQuestionComponent()" class="btn btn-info">Ask Questions</button>
                         </a>
                     </li>
 
@@ -15,32 +20,14 @@
                             <span data-feather="plus-circle"></span>
                         </a>
                     </h6>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="layers"></span>
-                        Integrations
-                        </a>
-                </li>
+
                 </ul>
 
                 <ul class="nav flex-column mb-2">
-                    <li class="nav-item">
+                    <li *ngFor="let question of questions" class="nav-item">
                         <a class="nav-link" href="#">
                             <span data-feather="file-text"></span>
-                            Current month
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Social engagement
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file-text"></span>
-                            Year-end sale
+                            {{question.title}}
                         </a>
                     </li>
                 </ul>
@@ -73,6 +60,12 @@
                 <app-course-material></app-course-material>
             </div>
 
+            <div *ngIf="loadCreateQuestion">
+                <app-create-question (createQuestionEvent) = "updateQuestion($event)"
+                                     [professorData]="professor"
+                                     [courseData]="courseId"
+                                     [userData] = "userId"></app-create-question>
+            </div>
         </main>
     </div>
 </div>

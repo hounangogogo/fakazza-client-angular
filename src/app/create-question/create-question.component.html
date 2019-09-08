@@ -1,0 +1,35 @@
+<div class="container-fluid">
+
+    <!-- Title of the question -->
+    <div>
+        <label for="title">Title</label>
+        <input [(ngModel)]="title" id="title" placeholder="Enter the title of your question" class="form-control">
+    </div>
+
+    <!-- Category of the question -->
+<!--    <div>-->
+<!--        <label>Category</label>-->
+<!--        <select-->
+<!--                ngModel (ngModelChange)="selectSchool($event)"-->
+<!--                class="form-control">-->
+<!--            <option value="" selected disabled hidden>&#45;&#45;select here&#45;&#45;</option>-->
+
+<!--            <option *ngFor="let school of schools"-->
+<!--                    [ngValue]="school">-->
+<!--                {{school.name}}-->
+<!--            </option>-->
+<!--        </select>-->
+<!--    </div>-->
+
+    <!-- Content of the question -->
+    <div>
+        <label>Question Content</label>
+        <textarea [(ngModel)]="questionContent" class="form-control"></textarea>
+
+    </div>
+
+    <div>
+        <button (click)="sumbitQuestion(title, questionContent)">Submit Question</button>
+    </div>
+
+</div>

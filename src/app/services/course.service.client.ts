@@ -56,4 +56,16 @@ export class CourseServiceClient {
             },
             credentials: 'include'
         }).then(response => response.json())
+
+
+    getQuestionsForCourse = (courseId) =>
+        fetch('http://localhost:8080/api/getQuestionsForCourse' + '/' + courseId, {
+            method: 'get',
+            headers: {
+                'content-type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+                'Access-Control-Allow-Origin': 'true'
+            },
+            credentials: 'include'
+        }).then(response => response.json())
 }
