@@ -24,10 +24,11 @@
                 </ul>
 
                 <ul class="nav flex-column mb-2">
-                    <li *ngFor="let question of questions" class="nav-item">
-                        <a class="nav-link" href="#">
+                    <li *ngFor="let question of questions" class="nav-item border-bottom">
+                        <a (click)="loadViewQuestionComponent(question.id)" class="nav-link">
                             <span data-feather="file-text"></span>
                             {{question.title}}
+
                         </a>
                     </li>
                 </ul>
@@ -39,7 +40,7 @@
                 <h1 class="h2">{{course.name}}</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
-                        <button class="btn btn-sm btn-outline-secondary">Q&A</button>
+<!--                        <button class="btn btn-sm btn-outline-secondary">Q&A</button>-->
                         <button (click)="loadCourseInfoComponent()" class="btn btn-sm btn-outline-secondary">CourseInfo</button>
                         <button (click)="loadCourseMaterialComponent()" class="btn btn-sm btn-outline-secondary">Course Material</button>
                         <button class="btn btn-sm btn-outline-secondary">statistics</button>
@@ -66,6 +67,11 @@
                                      [courseData]="courseId"
                                      [userData] = "userId"></app-create-question>
             </div>
+
+            <div *ngIf="loadViewQuestion">
+                <app-view-question [questionData] = "selectedQuestion"></app-view-question>
+            </div>
+
         </main>
     </div>
 </div>

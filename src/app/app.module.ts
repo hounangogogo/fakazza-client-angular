@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {CourseMaterialServiceClient} from './services/course-material.service.client';
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import {QuestionServiceClient} from './services/question.service.client';
+import { ViewQuestionComponent } from './view-question/view-question.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {QuestionServiceClient} from './services/question.service.client';
     CourseInfoComponent,
     CourseMaterialComponent,
     CreateQuestionComponent,
+    ViewQuestionComponent,
 
   ],
   imports: [

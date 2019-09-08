@@ -15,4 +15,14 @@ export class QuestionServiceClient {
             body: JSON.stringify(questionObj)
         }).then(response => response.json())
 
+    findQuestionById = (questionId) =>
+        fetch('http://localhost:8080/api/findQuestionById' + '/' + questionId, {
+            method: 'get',
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true'
+            }
+        }).then(response => response.json())
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {CourseServiceClient} from '../services/course.service.client';
 import {UserServiceClient} from '../services/user.service.client';
+import {QuestionServiceClient} from '../services/question.service.client';
 
 @Component({
   selector: 'app-fakazza-page',
@@ -13,6 +14,7 @@ export class FakazzaPageComponent implements OnInit {
   public courseId: string;
   public questions = []
   public professor = {};
+  public selectedQuestion = {};
   course = {
     professorId: undefined
   }
@@ -21,38 +23,53 @@ export class FakazzaPageComponent implements OnInit {
   private loadCourseInfo: boolean;
   private loadCourseMaterial: boolean;
   private loadCreateQuestion: boolean;
+  private loadViewQuestion: boolean;
 
 
 
   constructor(private route: ActivatedRoute,
               private courseService: CourseServiceClient,
-              private userService: UserServiceClient) { }
-
+              private userService: UserServiceClient,
+              private questionService: QuestionServiceClient) { }
 
   loadCourseInfoComponent() {
     this.loadCourseInfo = true;
     this.loadCourseMaterial = false;
     this.loadCreateQuestion = false;
+    this.loadViewQuestion = false;
   }
 
   loadCourseMaterialComponent() {
     this.loadCourseMaterial = true;
     this.loadCourseInfo = false;
     this.loadCreateQuestion = false;
+    this.loadViewQuestion = false;
   }
 
   loadCreateQuestionComponent() {
     this.loadCreateQuestion = true;
     this.loadCourseMaterial = false;
     this.loadCourseInfo = false;
-
+    this.loadViewQuestion = false;
   }
 
+  loadViewQuestionComponent(qid) {
+    console.log(qid);
+    this.questionService.findQuestionById(qid)
+        .then(question => this.selectedQuestion = question)
+        .then(() => {
+          this.loadCreateQuestion = false;
+          this.loadCourseMaterial = false;
+          this.loadCourseInfo = false;
+          this.loadViewQuestion = true;
+        });
+  }
 
   updateQuestion(event) {
     this.courseService.getQuestionsForCourse(this.courseId)
         .then(questions => this.questions = questions);
   }
+
 
 
   ngOnInit() {
