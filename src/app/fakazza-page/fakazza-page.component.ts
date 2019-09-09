@@ -18,7 +18,7 @@ export class FakazzaPageComponent implements OnInit {
   course = {
     professorId: undefined
   }
-  currentUser = {}
+  public currentUser = {}
 
   private loadCourseInfo: boolean;
   private loadCourseMaterial: boolean;

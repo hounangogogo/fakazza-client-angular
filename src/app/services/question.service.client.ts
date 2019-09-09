@@ -25,4 +25,15 @@ export class QuestionServiceClient {
             }
         }).then(response => response.json())
 
+
+    isCurrentUserOwner = (qid, uid) =>
+        fetch('http://localhost:8080/api/isCurrentUserOwner' + '/' + qid + '/' + uid, {
+            method: 'get',
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true'
+            }
+        })
+
 }

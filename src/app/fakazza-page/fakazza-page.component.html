@@ -69,7 +69,8 @@
             </div>
 
             <div *ngIf="loadViewQuestion">
-                <app-view-question [questionData] = "selectedQuestion"></app-view-question>
+                <app-view-question [currentUserData] = "currentUser"
+                                   [questionData] = "selectedQuestion"></app-view-question>
             </div>
 
         </main>
