@@ -69,8 +69,11 @@
             </div>
 
             <div *ngIf="loadViewQuestion">
-                <app-view-question [currentUserData] = "currentUser"
-                                   [questionData] = "selectedQuestion"></app-view-question>
+                <app-view-question (deleteQuestionEvent) = "updateQuestionFromDelete($event)"
+                                   [currentUserData] = "currentUser"
+                                   [questionData] = "selectedQuestion"
+                                   [courseData]="courseId"
+                ></app-view-question>
             </div>
 
         </main>

@@ -1,21 +1,18 @@
-<p>view-question works!</p>
 <div>
-
-    {{selectedQuestion.title}}
-
+    <label>Question Title</label>
+    <input id ="questionTitle" class="form-control" value="{{selectedQuestion.title}}" disabled>
 </div>
 <div>
-    {{selectedQuestion.content}}
-
-</div>
-
-<div>
-    Is the current own this question? : {{isOwner}}
+    <label>Content</label>
+    <textarea id="questionContent" class="form-control" disabled>
+        {{selectedQuestion.content}}
+    </textarea>
 </div>
 
 <div>
-    <button *ngIf="isOwner" class="btn btn-danger">Delete this question</button>
+    <button (click)="deleteQuestion(selectedQuestion.id)" *ngIf="isOwner" class="btn btn-danger">Delete this question</button>
 </div>
 <div>
-    <button *ngIf="isOwner" class="btn btn-warning">Edit this question</button>
+    <button (click)="editQuestion(selectedQuestion.id)" *ngIf="isOwner" class="btn btn-warning">Edit this question</button>
+    <button (click)="saveEditedQuestion()" *ngIf="isOwner" class="btn btn-success">Save</button>
 </div>

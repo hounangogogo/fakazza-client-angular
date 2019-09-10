@@ -70,7 +70,10 @@ export class FakazzaPageComponent implements OnInit {
         .then(questions => this.questions = questions);
   }
 
-
+  updateQuestionFromDelete(event) {
+      this.courseService.getQuestionsForCourse(this.courseId)
+          .then(questions => this.questions = questions);
+  }
 
   ngOnInit() {
     // ---------- Get userId and courseId from URL ----------

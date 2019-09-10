@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 import {QuestionServiceClient} from '../services/question.service.client';
 
 @Component({
@@ -8,11 +8,37 @@ import {QuestionServiceClient} from '../services/question.service.client';
 })
 export class ViewQuestionComponent implements OnInit {
   isOwner: boolean;
+  updatedCourse = [];
 
   @Input('currentUserData') public  currentUser;
   @Input('questionData') public selectedQuestion;
+  @Input('courseData') public courseId;
+
+  @Output() public deleteQuestionEvent = new EventEmitter();
+
 
   constructor(private questionService: QuestionServiceClient) { }
+
+
+  deleteQuestion(qid) {
+      console.log(qid);
+      this.questionService.deleteQuestion(qid, this.currentUser.id, this.courseId)
+          .then(courses => this.updatedCourse = courses)
+          .then(() => this.deleteQuestionEvent.emit('message'));
+  }
+
+  editQuestion(qid) {
+      const x = document.getElementById('questionTitle');
+      const y = document.getElementById('questionContent');
+      x.removeAttribute('disabled');
+      y.removeAttribute('disabled');
+
+      console.log(qid);
+  }
+
+  saveEditedQuestion() {
+    console.log('Dd');
+  }
 
   ngOnInit() {
     this.questionService.isCurrentUserOwner(this.selectedQuestion.id, this.currentUser.id)

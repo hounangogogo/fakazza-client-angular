@@ -36,4 +36,14 @@ export class QuestionServiceClient {
             }
         })
 
+    deleteQuestion = (qid, uid, cid) =>
+        fetch('http://localhost:8080/api/deleteQuestion' + '/' + qid + '/' + uid + '/' + cid, {
+            method: 'delete',
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true'
+            }
+        }).then(response => response.json())
+
 }
