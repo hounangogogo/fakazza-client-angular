@@ -12,3 +12,10 @@
 <div>
     Is the current own this question? : {{isOwner}}
 </div>
+
+<div>
+    <button *ngIf="isOwner" class="btn btn-danger">Delete this question</button>
+</div>
+<div>
+    <button *ngIf="isOwner" class="btn btn-warning">Edit this question</button>
+</div>
