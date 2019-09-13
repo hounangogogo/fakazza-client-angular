@@ -6,7 +6,7 @@ export class UserServiceClient {
 
     // Register function send the userObj to Spring Server
     register = (userObj) =>
-        fetch('http://localhost:8080/register', {
+        fetch('http://localhost:8080/api/register', {
             method: 'post',
             credentials: 'include',
             headers: {
@@ -19,7 +19,7 @@ export class UserServiceClient {
 
     // Login function send the userObj to Spring Server
     login = (userObj) =>
-        fetch('http://localhost:8080/login', {
+        fetch('http://localhost:8080/api/login', {
             method: 'post',
             credentials: 'include',
             headers: {
@@ -31,14 +31,14 @@ export class UserServiceClient {
 
     // Get the currentUser from session
     getCurrentUser = () =>
-        fetch('http://localhost:8080/getcurrentUser', {
+        fetch('http://localhost:8080/api/getCurrentUser', {
             credentials: 'include'
         }).then(response => response.json())
 
 
 
     getEnrolledCourses = () =>
-        fetch('http://localhost:8080/getEnrolledCourses', {
+        fetch('http://localhost:8080/api/getEnrolledCourses', {
             method: 'get',
             credentials: 'include',
             headers: {
@@ -49,7 +49,7 @@ export class UserServiceClient {
 
 
     getUserById = (userId) =>
-        fetch('http://localhost:8080/getUserById/' + userId, {
+        fetch('http://localhost:8080/api/getUserById/' + userId, {
             method: 'get',
             credentials: 'include',
             headers: {
