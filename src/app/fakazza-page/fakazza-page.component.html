@@ -65,15 +65,16 @@
                 <app-create-question (createQuestionEvent) = "updateQuestion($event)"
                                      [professorData]="professor"
                                      [courseData]="courseId"
-                                     [userData] = "userId"></app-create-question>
+                                     [userData] = "userId">
+                </app-create-question>
             </div>
 
             <div *ngIf="loadViewQuestion">
                 <app-view-question (deleteQuestionEvent) = "updateQuestionFromDelete($event)"
                                    [currentUserData] = "currentUser"
                                    [questionData] = "selectedQuestion"
-                                   [courseData]="courseId"
-                ></app-view-question>
+                                   [courseData]="courseId">
+                </app-view-question>
             </div>
 
         </main>

@@ -9,6 +9,8 @@ import {QuestionServiceClient} from '../services/question.service.client';
 export class ViewQuestionComponent implements OnInit {
   isOwner: boolean;
   updatedCourse = [];
+  owner = {};
+  // answers = [];
 
   @Input('currentUserData') public  currentUser;
   @Input('questionData') public selectedQuestion;
@@ -40,6 +42,20 @@ export class ViewQuestionComponent implements OnInit {
     console.log('Dd');
   }
 
+  showCommentArea() {
+      const x = document.getElementById('commentArea');
+      x.style.display = 'block';
+  }
+
+  createAnswer(answer) {
+      console.log(answer);
+      const answerObj = {
+          content: answer
+      };
+      this.questionService.createAnswer(this.currentUser.id, this.selectedQuestion.id, answerObj)
+          .then(answers => this.selectedQuestion.answers = answers);
+  }
+
   ngOnInit() {
     this.questionService.isCurrentUserOwner(this.selectedQuestion.id, this.currentUser.id)
         .then(response => {
@@ -51,8 +67,10 @@ export class ViewQuestionComponent implements OnInit {
           }
         });
 
-
-
+    this.questionService.getQuestionOwner(this.selectedQuestion.id)
+        .then(owner => this.owner = owner);
+    //
+    // this.questionService.findAllAnswersForQuestion(this.selectedQuestion.id)
+    //     .then(answers => this.answers = answers);
   }
-
 }

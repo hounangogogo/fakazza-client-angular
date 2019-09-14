@@ -54,7 +54,11 @@ export class FakazzaPageComponent implements OnInit {
   }
 
   loadViewQuestionComponent(qid) {
+    console.log('This is loadViewQuestionComponent');
     console.log(qid);
+    console.log(qid);
+    console.log('----------');
+
     this.questionService.findQuestionById(qid)
         .then(question => this.selectedQuestion = question)
         .then(() => {
@@ -67,7 +71,8 @@ export class FakazzaPageComponent implements OnInit {
 
   updateQuestion(event) {
     this.courseService.getQuestionsForCourse(this.courseId)
-        .then(questions => this.questions = questions);
+        .then(questions => this.questions = questions)
+        .then(() => this.loadViewQuestionComponent(this.questions[this.questions.length - 1].id));
   }
 
   updateQuestionFromDelete(event) {

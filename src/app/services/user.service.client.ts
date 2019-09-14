@@ -31,7 +31,7 @@ export class UserServiceClient {
 
     // Get the currentUser from session
     getCurrentUser = () =>
-        fetch('http://localhost:8080/api/getcurrentUser', {
+        fetch('http://localhost:8080/api/getCurrentUser', {
             credentials: 'include'
         }).then(response => response.json())
 

@@ -6,18 +6,19 @@ import {QuestionServiceClient} from '../services/question.service.client';
   templateUrl: './create-question.component.html',
   styleUrls: ['./create-question.component.css'],
 })
+
 export class CreateQuestionComponent implements OnInit {
   @Input('professorData') public professor;
   @Input('courseData') public courseId;
   @Input('userData') public userId;
+  @Input() viewQuestionFunc;
   questions = [];
 
   @Output() public createQuestionEvent = new EventEmitter();
 
   constructor(private questionService: QuestionServiceClient) { }
 
-
-  sumbitQuestion(QuestionTitle, QuestionContent) {
+  submitQuestion(QuestionTitle, QuestionContent) {
 
     const questionObj = {
       title: QuestionTitle,
@@ -29,9 +30,6 @@ export class CreateQuestionComponent implements OnInit {
         .then(questions => this.questions = questions)
         .then(() => this.createQuestionEvent.emit('message'));
   }
-
-
   ngOnInit() {
   }
-
 }
