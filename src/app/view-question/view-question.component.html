@@ -28,7 +28,7 @@
     <button (click)="createAnswer(answer)" class="btn btn-success float-right">Post</button>
 </div>
 
-<div *ngFor="let answer of answers" class="form-group">
+<div *ngFor="let answer of selectedQuestion.answers" class="form-group">
     <textarea class="form-control" rows="3">
         {{answer.content}}
     </textarea>

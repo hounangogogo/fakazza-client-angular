@@ -10,7 +10,7 @@ export class ViewQuestionComponent implements OnInit {
   isOwner: boolean;
   updatedCourse = [];
   owner = {};
-  answers = [];
+  // answers = [];
 
   @Input('currentUserData') public  currentUser;
   @Input('questionData') public selectedQuestion;
@@ -53,7 +53,7 @@ export class ViewQuestionComponent implements OnInit {
           content: answer
       };
       this.questionService.createAnswer(this.currentUser.id, this.selectedQuestion.id, answerObj)
-          .then(answers => this.answers = answers);
+          .then(answers => this.selectedQuestion.answers = answers);
   }
 
   ngOnInit() {
@@ -69,12 +69,8 @@ export class ViewQuestionComponent implements OnInit {
 
     this.questionService.getQuestionOwner(this.selectedQuestion.id)
         .then(owner => this.owner = owner);
-
-    this.questionService.findAllAnswersForQuestion(this.selectedQuestion.id)
-        .then(answers => this.answers = answers);
-
-
-
+    //
+    // this.questionService.findAllAnswersForQuestion(this.selectedQuestion.id)
+    //     .then(answers => this.answers = answers);
   }
-
 }
