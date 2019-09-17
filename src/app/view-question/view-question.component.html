@@ -24,12 +24,21 @@
 </div>
 
 <div style="display: none" id="commentArea" class="form-group">
-    <textarea [(ngModel)]="answer" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    <button (click)="createAnswer(answer)" class="btn btn-success float-right">Post</button>
+    <textarea [(ngModel)]="answerModel" class="form-control" rows="3"></textarea>
+    <button (click)="createAnswer(answerModel)" class="btn btn-success float-right">Post</button>
 </div>
 
 <div *ngFor="let answer of selectedQuestion.answers" class="form-group">
+
     <textarea class="form-control" rows="3">
         {{answer.content}}
+
     </textarea>
+    <div *ngIf="answerIds(currentUser.answers).indexOf(answer.id) > -1">
+        <button class="btn btn-danger float-right">Delete</button>
+        <button class="btn btn-warning float-right">Edit</button>
+        <button class="btn btn-success float-right">Save</button>
+    </div>
+
+
 </div>
