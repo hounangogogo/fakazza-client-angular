@@ -1,5 +1,7 @@
 import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 import {QuestionServiceClient} from '../services/question.service.client';
+import {UserServiceClient} from '../services/user.service.client';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-view-question',
@@ -8,19 +10,27 @@ import {QuestionServiceClient} from '../services/question.service.client';
 })
 export class ViewQuestionComponent implements OnInit {
   isOwner: boolean;
+  isAnswerOwner: boolean;
   updatedCourse = [];
   owner = {};
-  // answers = [];
+  userId: string;
 
   @Input('currentUserData') public  currentUser;
   @Input('questionData') public selectedQuestion;
   @Input('courseData') public courseId;
-
+  @Input('answerModel') public answerModel;
   @Output() public deleteQuestionEvent = new EventEmitter();
 
 
-  constructor(private questionService: QuestionServiceClient) { }
+  constructor(private route: ActivatedRoute,
+              private questionService: QuestionServiceClient,
+              private userService: UserServiceClient) { }
 
+  answerIds(as) {
+      return as.map(a => {
+          return a.id;
+      });
+  }
 
   deleteQuestion(qid) {
       console.log(qid);
@@ -48,16 +58,18 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   createAnswer(answer) {
-      console.log(answer);
       const answerObj = {
           content: answer
       };
+      this.answerModel = '';
+
       this.questionService.createAnswer(this.currentUser.id, this.selectedQuestion.id, answerObj)
           .then(answers => this.selectedQuestion.answers = answers);
   }
 
   ngOnInit() {
-    this.questionService.isCurrentUserOwner(this.selectedQuestion.id, this.currentUser.id)
+      this.userId = this.route.snapshot.paramMap.get('uid');
+      this.questionService.isCurrentUserOwner(this.selectedQuestion.id, this.currentUser.id)
         .then(response => {
           if (response.status === 200) {
             this.isOwner = true;
@@ -67,10 +79,7 @@ export class ViewQuestionComponent implements OnInit {
           }
         });
 
-    this.questionService.getQuestionOwner(this.selectedQuestion.id)
+      this.questionService.getQuestionOwner(this.selectedQuestion.id)
         .then(owner => this.owner = owner);
-    //
-    // this.questionService.findAllAnswersForQuestion(this.selectedQuestion.id)
-    //     .then(answers => this.answers = answers);
   }
 }

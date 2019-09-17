@@ -4,6 +4,8 @@ import {CourseServiceClient} from '../services/course.service.client';
 import {UserServiceClient} from '../services/user.service.client';
 import {QuestionServiceClient} from '../services/question.service.client';
 
+
+
 @Component({
   selector: 'app-fakazza-page',
   templateUrl: './fakazza-page.component.html',
