@@ -35,8 +35,21 @@ export class ViewQuestionComponent implements OnInit {
   deleteQuestion(qid) {
       console.log(qid);
       this.questionService.deleteQuestion(qid, this.currentUser.id, this.courseId)
-          .then(courses => this.updatedCourse = courses)
-          .then(() => this.deleteQuestionEvent.emit('message'));
+          .then(courses => {
+              this.updatedCourse = courses;
+
+              // TODO
+              if (this.updatedCourse.status === 500) {
+                  this.helperForCannotDeleteTag();
+              } else {
+                  this.deleteQuestionEvent.emit('message');
+              }
+          });
+  }
+  helperForCannotDeleteTag() {
+      const x = document.getElementById('canNotDeleQuestion');
+      x.style.display = 'block';
+      throw new Error('Not 200 response');
   }
 
   editQuestion(qid) {

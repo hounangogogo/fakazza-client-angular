@@ -79,7 +79,8 @@ export class FakazzaPageComponent implements OnInit {
 
   updateQuestionFromDelete(event) {
       this.courseService.getQuestionsForCourse(this.courseId)
-          .then(questions => this.questions = questions);
+          .then(questions => this.questions = questions)
+          .then(() => this.loadViewQuestion = false);
   }
 
   ngOnInit() {
