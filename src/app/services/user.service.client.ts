@@ -16,7 +16,6 @@ export class UserServiceClient {
             body: JSON.stringify(userObj)
         })
 
-
     // Login function send the userObj to Spring Server
     login = (userObj) =>
         fetch('http://localhost:8080/api/login', {
@@ -29,7 +28,7 @@ export class UserServiceClient {
             body: JSON.stringify(userObj)
         })
 
-    // Get the currentUser from session
+    // Get the currentUser from session in Spring Server
     getCurrentUser = () =>
         fetch('http://localhost:8080/api/getCurrentUser', {
             credentials: 'include'

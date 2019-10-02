@@ -8,16 +8,22 @@ import {QuestionServiceClient} from '../services/question.service.client';
 })
 
 export class CreateQuestionComponent implements OnInit {
+
+  // ----- Inject contents from parent Fakazza page -----
   @Input('professorData') public professor;
   @Input('courseData') public courseId;
   @Input('userData') public userId;
   @Input() viewQuestionFunc;
+
+  // Deject method to parent Fakazza page
+  @Output() public createQuestionEvent = new EventEmitter();
+
   questions = [];
 
-  @Output() public createQuestionEvent = new EventEmitter();
 
   constructor(private questionService: QuestionServiceClient) { }
 
+  // ----- After enter the question data submit to Java Server -----
   submitQuestion(QuestionTitle, QuestionContent) {
 
     const questionObj = {
@@ -25,6 +31,8 @@ export class CreateQuestionComponent implements OnInit {
       content: QuestionContent
     };
 
+     // After create a question, send a notification to parent component
+     // use createQuestionEvent in order to render the vertical navigation bar
     this.questionService
         .createQuestion(this.courseId, this.userId, questionObj)
         .then(questions => this.questions = questions)

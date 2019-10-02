@@ -14,10 +14,10 @@ export class RegisterComponent implements OnInit {
   email: string;
 
   constructor(private router: Router,
-              private userService: UserServiceClient) { }
+              private userService: UserServiceClient) {}
 
+  // Function for register a user
   register = (name, code1, code2, mail) => {
-
     // Check the password1 and password2 are the same or not
     if (code1 === code2) {
 

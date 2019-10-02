@@ -1,48 +1,53 @@
-<div style="display: none" id="canNotDeleQuestion" class="alert alert-danger">
-    <strong>Warning!</strong> Someone has comment for you question, can not delete
-</div>
-
-<div>
-    <label>Question Title</label>
-    <input id ="questionTitle" class="form-control" value="{{selectedQuestion.title}}" disabled>
-</div>
-<div>
-    <label>Content</label>
-    <textarea id="questionContent" class="form-control" disabled>
-        {{selectedQuestion.content}}
-    </textarea>
-</div>
-
-<div>
-    <button (click)="deleteQuestion(selectedQuestion.id)" *ngIf="isOwner" class="btn btn-danger float-right">Delete this question</button>
-    <button (click)="editQuestion(selectedQuestion.id)" *ngIf="isOwner" class="btn btn-warning float-right">Edit this question</button>
-    <button (click)="saveEditedQuestion()" *ngIf="isOwner" class="btn btn-success float-right">Save</button>
-</div>
-<div>
-   <p>Question ask by {{owner.username}}</p>
-</div>
-
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h4>Comments</h4>
-    <button (click)="showCommentArea()" class="btn btn-info">Write an Answer</button>
-</div>
-
-<div style="display: none" id="commentArea" class="form-group">
-    <textarea [(ngModel)]="answerModel" class="form-control" rows="3"></textarea>
-    <button (click)="createAnswer(answerModel)" class="btn btn-success float-right">Post</button>
-</div>
-
-<div *ngFor="let answer of selectedQuestion.answers" class="form-group">
-
-    <textarea class="form-control" rows="3">
-        {{answer.content}}
-
-    </textarea>
-    <div *ngIf="answerIds(currentUser.answers).indexOf(answer.id) > -1">
-        <button class="btn btn-danger float-right">Delete</button>
-        <button class="btn btn-warning float-right">Edit</button>
-        <button class="btn btn-success float-right">Save</button>
+<div class="container-fluid">
+    <!--TODO-->
+    <div style="display: none" id="canNotDeleQuestion" class="alert alert-danger">
+        <strong>Warning!</strong> Someone has comment for you question, can not delete
     </div>
 
 
+
+    <!-- Content of Question-->
+    <div>
+        <label>Question Title</label>
+        <input id ="questionTitle" class="form-control" value="{{selectedQuestion.title}}" disabled>
+    </div>
+    <div>
+        <label>Content</label>
+        <textarea id="questionContent" class="form-control" disabled>
+        {{selectedQuestion.content}}
+    </textarea>
+    </div>
+
+    <!-- Button control for different question-->
+    <div>
+        <button (click)="deleteQuestion(selectedQuestion.id)" *ngIf="isOwner" class="btn btn-danger float-right">Delete this question</button>
+        <button (click)="editQuestion(selectedQuestion.id)" *ngIf="isOwner" class="btn btn-warning float-right">Edit this question</button>
+        <button (click)="saveEditedQuestion()" *ngIf="isOwner" class="btn btn-success float-right">Save</button>
+    </div>
+    <div>
+        <p>Question ask by {{owner.username}}</p>
+    </div>
+
+    <!--Button control for different question
+        Once click Write an Answer button, comment area will pop up -->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h4>Comments</h4>
+        <button (click)="showCommentArea()" class="btn btn-info">Write an Answer</button>
+    </div>
+    <div style="display: none" id="commentArea" class="form-group">
+        <textarea [(ngModel)]="answerModel" class="form-control" rows="3"></textarea>
+        <button (click)="createAnswer(answerModel)" class="btn btn-success float-right">Post</button>
+    </div>
+
+    <!-- Show all answers for this question -->
+    <div *ngFor="let answer of selectedQuestion.answers" class="form-group">
+        <textarea class="form-control" rows="3">
+            {{answer.content}}
+        </textarea>
+        <div *ngIf="answerIds(currentUser.answers).indexOf(answer.id) > -1">
+            <button class="btn btn-danger float-right">Delete</button>
+            <button class="btn btn-warning float-right">Edit</button>
+            <button class="btn btn-success float-right">Save</button>
+        </div>
+    </div>
 </div>

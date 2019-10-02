@@ -9,48 +9,38 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./view-question.component.css']
 })
 export class ViewQuestionComponent implements OnInit {
-  isOwner: boolean;
-  isAnswerOwner: boolean;
-  updatedCourse = [];
-  owner = {};
-  userId: string;
+    isOwner: boolean;
+    isAnswerOwner: boolean;
+    updatedCourse = [];
+    owner = {};
+    userId: string;
 
-  @Input('currentUserData') public  currentUser;
-  @Input('questionData') public selectedQuestion;
-  @Input('courseData') public courseId;
-  @Input('answerModel') public answerModel;
-  @Output() public deleteQuestionEvent = new EventEmitter();
+    @Input('currentUserData') public currentUser;
+    @Input('questionData') public selectedQuestion;
+    @Input('courseData') public courseId;
+    @Input('answerModel') public answerModel;
+    @Output() public deleteQuestionEvent = new EventEmitter();
 
 
-  constructor(private route: ActivatedRoute,
-              private questionService: QuestionServiceClient,
-              private userService: UserServiceClient) { }
+    constructor(private route: ActivatedRoute,
+                private questionService: QuestionServiceClient,
+                private userService: UserServiceClient) {
+    }
 
-  answerIds(as) {
-      return as.map(a => {
-          return a.id;
-      });
-  }
+    answerIds(as) {
+        return as.map(a => {
+            return a.id;
+        });
+    }
 
-  deleteQuestion(qid) {
-      console.log(qid);
-      this.questionService.deleteQuestion(qid, this.currentUser.id, this.courseId)
-          .then(courses => {
-              this.updatedCourse = courses;
+    deleteQuestion(qid) {
+        console.log('ddd');
+        console.log(qid);
+        this.questionService.deleteQuestion(qid, this.currentUser.id, this.courseId)
+            .then(courses => this.updatedCourse = courses)
+            .then(() => this.deleteQuestionEvent.emit('message'));
+    }
 
-              // TODO
-              if (this.updatedCourse.status === 500) {
-                  this.helperForCannotDeleteTag();
-              } else {
-                  this.deleteQuestionEvent.emit('message');
-              }
-          });
-  }
-  helperForCannotDeleteTag() {
-      const x = document.getElementById('canNotDeleQuestion');
-      x.style.display = 'block';
-      throw new Error('Not 200 response');
-  }
 
   editQuestion(qid) {
       const x = document.getElementById('questionTitle');

@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private userService: UserServiceClient) { }
 
+  // Login function
   login = (name, code) => {
 
     // Use the value from input field, and create a user object
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['profile']);
         }
         if (response.status !== 200) {
+          // Show Error Tag
           const x = document.getElementById('loginError');
           x.style.display = 'block';
           throw new Error('Not 200 response');

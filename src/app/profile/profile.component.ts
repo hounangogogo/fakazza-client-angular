@@ -9,12 +9,16 @@ import {Router} from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  schools = [];
-  courses = [];
   currentUser = {
     id: undefined,
     courses: undefined
   }
+
+  schools = [];
+  // TODO
+  // Do we really need this?
+  courses = [];
+
   selectedSchool = {
     majors: undefined
   }
@@ -85,9 +89,8 @@ export class ProfileComponent implements OnInit {
   }
 
 
-
-
   // ---------- Services functions ----------
+
 
   dropCourse = (course) => {
     this.courseService
@@ -96,7 +99,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  // Create Course
+  // Create Course for user (only for professor)
   createCourse = (courseName) => {
     this.courseService.createCourse(this.currentUser.id, this.selectedMajor.id, courseName)
         .then(createdCourse => this.createdCourse = createdCourse)
@@ -104,8 +107,7 @@ export class ProfileComponent implements OnInit {
             this.router.navigateByUrl('/fakazza/' + this.currentUser.id + '/' + this.createdCourse.id));
   }
 
-
-
+  // Enroll course function
   enroll = (course) => {
     const userId = this.currentUser.id;
     const courseId = course.id;
@@ -113,6 +115,8 @@ export class ProfileComponent implements OnInit {
     this.courseService.enroll(userId, courseId)
       .then(response => {
         if (response.status === 200) {
+          // TODO
+          // Do we really need this fucking function?
           return this.userService.getEnrolledCourses();
         }
       }).then(() =>  this.router.navigateByUrl(url));
@@ -122,14 +126,14 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    // Get user from session
+    // Get currentUser from session and set it to currentUser variable
     this.userService.getCurrentUser()
       .then(user => this.currentUser = user);
 
-
+    // TODO
+    // Do we really need this fucking function?
     this.userService.getEnrolledCourses()
         .then(courses => this.courses = courses);
-
 
     this.courseService.getSchools()
       .then(schools => this.schools = schools);
