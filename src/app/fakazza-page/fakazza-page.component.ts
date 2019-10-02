@@ -5,12 +5,12 @@ import {UserServiceClient} from '../services/user.service.client';
 import {QuestionServiceClient} from '../services/question.service.client';
 
 
-
 @Component({
   selector: 'app-fakazza-page',
   templateUrl: './fakazza-page.component.html',
   styleUrls: ['./fakazza-page.component.css']
 })
+
 export class FakazzaPageComponent implements OnInit {
   public userId: string;
   public courseId: string;
@@ -34,6 +34,7 @@ export class FakazzaPageComponent implements OnInit {
               private userService: UserServiceClient,
               private questionService: QuestionServiceClient) { }
 
+  // -------- Load different component base on button clicked --------
   loadCourseInfoComponent() {
     this.loadCourseInfo = true;
     this.loadCourseMaterial = false;
@@ -55,6 +56,8 @@ export class FakazzaPageComponent implements OnInit {
     this.loadViewQuestion = false;
   }
 
+
+  // loadViewQuestionComponent method will show the question created or clicked
   loadViewQuestionComponent(qid) {
     console.log('This is loadViewQuestionComponent');
     console.log(qid);
@@ -70,6 +73,11 @@ export class FakazzaPageComponent implements OnInit {
           this.loadViewQuestion = true;
         });
   }
+
+  // updateQuestion update the question list to render vertical bar
+  // get a notification from child component,
+  // and load the question on Fakazza page
+  // questions are added in order, so new question is at the end of the list
 
   updateQuestion(event) {
     this.courseService.getQuestionsForCourse(this.courseId)

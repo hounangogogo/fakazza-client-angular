@@ -1,6 +1,34 @@
+
+<!-------------------- NavBar will be used in all pages -------------------->
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Fakazza</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation"
+            (click)="toggleCollapsed()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="login">Login
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="register">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="profile">Profile</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<!-------------------- Use router outlet to load different page -------------------->
 <div class="container-fluid">
-  <a routerLink="login">Login</a> |
-  <a routerLink="register">Register</a> |
-  <a routerLink="profile">Profile</a>
   <router-outlet></router-outlet>
-</div>
+</div>
+

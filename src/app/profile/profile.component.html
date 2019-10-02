@@ -1,17 +1,21 @@
-<div>
+<div class="container-fluid">
+
   <h2>Welcome {{currentUser.username}}</h2>
 
-  <div>
-    <label for="username">Username</label>
-    <input id="username" value={{currentUser.username}} disabled="disabled" class="form-control">
-  </div>
+  <!-------------------- User's personal information  -------------------->
 
-  <div>
-    <label for="email">Email</label>
-    <input id="email" value={{currentUser.email}} disabled="disabled" class="form-control">
-  </div>
+<!--  <div>-->
+<!--    <label for="username">Username</label>-->
+<!--    <input id="username" value={{currentUser.username}} disabled="disabled" class="form-control">-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <label for="email">Email</label>-->
+<!--    <input id="email" value={{currentUser.email}} disabled="disabled" class="form-control">-->
+<!--  </div>-->
 
-  <h2>Courses Enrolled</h2>
+  <!-------------------- Courses that user has enrolled  -------------------->
+  <br/>
+  <h4>Courses Enrolled</h4>
   <div>
     <ul class="list-group">
       <li *ngFor="let course of currentUser.courses" class="list-group-item">
@@ -21,13 +25,14 @@
     </ul>
   </div>
 
-  <!--  Course Enroll Form-->
-  <h2>Enroll or Create Course</h2>
+  <!-------------------- Courses enroll form  -------------------->
+  <br/>
+  <h4>Enroll or Create Course</h4>
 
   <div>
     <label>School</label>
     <select ngModel (ngModelChange)="selectSchool($event)" class="form-control">
-      <option value="" selected disabled hidden>--select here--</option>
+      <option value="" selected disabled hidden>-- SELECT HERE --</option>
 
       <option *ngFor="let school of schools"
               [ngValue]="school">
@@ -39,7 +44,7 @@
   <div>
     <label>Major</label>
     <select ngModel (ngModelChange)="selectMajor($event)" class="form-control">
-      <option value="" selected disabled hidden>--select here--</option>
+      <option value="" selected disabled hidden>-- SELECT HERE --</option>
 
       <option *ngFor="let major of selectedSchool.majors">
         {{major.name}}
@@ -50,7 +55,7 @@
   <div>
     <label>Course</label>
     <select ngModel (ngModelChange)="selectCourse($event)" class="form-control">
-      <option value="" selected disabled hidden>--select here--</option>
+      <option value="" selected disabled hidden>-- SELECT HERE --</option>
 
       <option *ngFor="let course of selectedMajor.courses">
         {{course.name}}
@@ -61,23 +66,23 @@
   <div>
     <label>Roll</label>
     <select ngModel (ngModelChange)="selectRoll($event)" class="form-control">
-      <option value="" selected disabled hidden>--select here--</option>
+      <option value="" selected disabled hidden>-- SELECT HERE --</option>
       <option value="Professor">Professor</option>
       <option value="TA">TA</option>
       <option value="Student">Student</option>
     </select>
   </div>
 
+
+  <!-------------------- Add create course field once you selected professor  -------------------->
   <div style="display: none" id="isProfessor">
     <label>Add Course Here</label>
-    <input [(ngModel)]="courseName" id="newCourse" placeholder="Create New Course" class="form-control">
+    <input [(ngModel)]="courseName" id="newCourse" placeholder="Create a new course" class="form-control">
     <button (click)="createCourse(courseName)" class="form-control btn btn-info">Create</button>
   </div>
-
-  <!-- Add create course field once you selected professor -->
-
   <div>
     <button (click)="enroll(selectedCourse)" class="form-control btn btn-success">Enroll</button>
   </div>
+
 </div>
 

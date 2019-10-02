@@ -1,14 +1,19 @@
 <div class="container-fluid">
+
+    <!-------------------- Vertical navigation bar for questions  -------------------->
+
     <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link">
-                            <p>Hi {{currentUser.username}}</p>
+                            <h2>Hi {{currentUser.username}}</h2>
                         </a>
                     </li>
                     <li class="nav-item">
+
+                        <!---------- Button for create a new question  ---------->
                         <a class="nav-link">
                             <button (click)="loadCreateQuestionComponent()" class="btn btn-info">Ask Questions</button>
                         </a>
@@ -20,25 +25,30 @@
                             <span data-feather="plus-circle"></span>
                         </a>
                     </h6>
-
                 </ul>
 
+                <!---------- Load all questions for current course  ---------->
                 <ul class="nav flex-column mb-2">
                     <li *ngFor="let question of questions" class="nav-item border-bottom">
                         <a (click)="loadViewQuestionComponent(question.id)" class="nav-link">
                             <span data-feather="file-text"></span>
                             {{question.title}}
-
                         </a>
                     </li>
                 </ul>
             </div>
         </nav>
+    </div>
 
+
+    <div>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <!---------- Selection for different section  ---------->
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">{{course.name}}</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
+
+                    <!---------- Click section, and load component  ---------->
                     <div class="btn-group mr-2">
 <!--                        <button class="btn btn-sm btn-outline-secondary">Q&A</button>-->
                         <button (click)="loadCourseInfoComponent()" class="btn btn-sm btn-outline-secondary">CourseInfo</button>
@@ -52,15 +62,20 @@
                 </div>
             </div>
 
-            <div *ngIf="loadCourseInfo">
-                <app-course-info [professorData]="professor" [courseData]="courseId"></app-course-info>
 
+            <!---------- Load different component once button clicked  ---------->
+            <div *ngIf="loadCourseInfo">
+                <app-course-info [professorData]="professor"
+                                 [courseData]="courseId">
+                </app-course-info>
             </div>
 
             <div *ngIf="loadCourseMaterial">
                 <app-course-material></app-course-material>
             </div>
 
+            <!--- (createQuestionEvent) takes in a message from creation question app
+                  in order to retrieve the question from server and update the vertical bar--->
             <div *ngIf="loadCreateQuestion">
                 <app-create-question (createQuestionEvent) = "updateQuestion($event)"
                                      [professorData]="professor"
@@ -76,7 +91,6 @@
                                    [courseData]="courseId">
                 </app-view-question>
             </div>
-
         </main>
     </div>
 </div>

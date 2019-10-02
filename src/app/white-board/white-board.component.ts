@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-white-board',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WhiteBoardComponent implements OnInit {
 
+  // navigation bar collapsed
+  collapsed = true;
+
   constructor() { }
 
+  // Function to manipulate the navigation bar
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
   ngOnInit() {
   }
-
 }
