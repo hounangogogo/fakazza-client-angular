@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
       this.userService.register(userObj)
         .then(response => {
           if (response.status === 200) {
+            this.userService.loggedin = true;
             this.router.navigate(['profile']);
           }
           if (response.status !== 200) {
