@@ -4,6 +4,9 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class UserServiceClient {
 
+    loggedin = false;
+
+
     // Register function send the userObj to Spring Server
     register = (userObj) =>
         fetch('http://localhost:8080/api/register', {

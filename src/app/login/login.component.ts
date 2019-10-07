@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(userObj)
       .then(response => {
         if (response.status === 200) {
+          this.userService.loggedin = true;
           this.router.navigate(['profile']);
         }
         if (response.status !== 200) {

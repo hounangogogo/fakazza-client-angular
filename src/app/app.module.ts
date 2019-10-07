@@ -26,6 +26,8 @@ import {CourseMaterialServiceClient} from './services/course-material.service.cl
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import {QuestionServiceClient} from './services/question.service.client';
 import { ViewQuestionComponent } from './view-question/view-question.component';
+import { AdvPageComponent } from './adv-page/adv-page.component';
+import { RetrievePasswordComponent } from './retrieve-password/retrieve-password.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { ViewQuestionComponent } from './view-question/view-question.component';
     CourseMaterialComponent,
     CreateQuestionComponent,
     ViewQuestionComponent,
+    AdvPageComponent,
+    RetrievePasswordComponent,
 
   ],
   imports: [
