@@ -18,6 +18,13 @@ export class RegisterComponent implements OnInit {
 
   // Function for register a user
   register = (name, code1, code2, mail) => {
+
+    // Click the register button, initial the error tag.
+    const a = document.getElementById('usernameTaken');
+    a.style.display = 'none';
+    const b = document.getElementById('passwordWrong');
+    b.style.display = 'none';
+
     // Check the password1 and password2 are the same or not
     if (code1 === code2) {
 

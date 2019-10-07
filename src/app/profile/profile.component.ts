@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserServiceClient} from '../services/user.service.client';
 import {CourseServiceClient} from '../services/course.service.client';
 import {Router} from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -9,6 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
   currentUser = {
     id: undefined,
     courses: undefined
@@ -81,6 +83,8 @@ export class ProfileComponent implements OnInit {
     if (roll === 'Professor') {
       const x = document.getElementById('isProfessor');
       x.style.display = 'block';
+      const y = document.getElementById('notProfessor');
+      y.style.display = 'none';
     }
     if (roll !== 'Professor') {
       const x = document.getElementById('isProfessor');
@@ -93,6 +97,7 @@ export class ProfileComponent implements OnInit {
 
 
   dropCourse = (course) => {
+    console.log(course);
     this.courseService
         .dropCourse(course.id, this.currentUser.id)
         .then(user => this.currentUser = user);
@@ -109,17 +114,24 @@ export class ProfileComponent implements OnInit {
 
   // Enroll course function
   enroll = (course) => {
-    const userId = this.currentUser.id;
-    const courseId = course.id;
-    const url = '/fakazza/' + this.currentUser.id + '/' + this.selectedCourse.id;
-    this.courseService.enroll(userId, courseId)
-      .then(response => {
-        if (response.status === 200) {
-          // TODO
-          // Do we really need this fucking function?
-          return this.userService.getEnrolledCourses();
-        }
-      }).then(() =>  this.router.navigateByUrl(url));
+    console.log(course);
+    if (typeof(course.id) !== 'undefined') {
+      const userId = this.currentUser.id;
+      const courseId = course.id;
+      const url = '/fakazza/' + this.currentUser.id + '/' + this.selectedCourse.id;
+      this.courseService.enroll(userId, courseId)
+          .then(response => {
+            if (response.status === 200) {
+              // TODO
+              // Do we really need this fucking function?
+              return this.userService.getEnrolledCourses();
+            }
+          }).then(() =>  this.router.navigateByUrl(url));
+    } else {
+      const x = document.getElementById('fieldsRequired');
+      x.style.display = 'block';
+    }
+
   }
 
 
