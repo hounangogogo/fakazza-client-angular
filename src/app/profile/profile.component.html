@@ -1,5 +1,8 @@
 <div class="container-fluid">
-
+  <!-- Alert Tag for Password, and Username check (Default is none)-->
+  <div style="display: none" id="fieldsRequired" class="alert alert-danger">
+    <strong>Warning!</strong> To Enroll a course School, Major, Course, and Roll are required
+  </div>
   <h2>Welcome {{currentUser.username}}</h2>
 
   <!-------------------- User's personal information  -------------------->
@@ -31,8 +34,8 @@
 
   <div>
     <label>School</label>
-    <select ngModel (ngModelChange)="selectSchool($event)" class="form-control">
-      <option value="" selected disabled hidden>-- SELECT HERE --</option>
+    <select ngModel (ngModelChange)="selectSchool($event)" class="form-control" required="true">
+      <option value="" disabled hidden>-- SELECT HERE --</option>
 
       <option *ngFor="let school of schools"
               [ngValue]="school">
@@ -44,7 +47,7 @@
   <div>
     <label>Major</label>
     <select ngModel (ngModelChange)="selectMajor($event)" class="form-control">
-      <option value="" selected disabled hidden>-- SELECT HERE --</option>
+      <option value="" disabled hidden>-- SELECT HERE --</option>
 
       <option *ngFor="let major of selectedSchool.majors">
         {{major.name}}
@@ -55,7 +58,7 @@
   <div>
     <label>Course</label>
     <select ngModel (ngModelChange)="selectCourse($event)" class="form-control">
-      <option value="" selected disabled hidden>-- SELECT HERE --</option>
+      <option value="" disabled hidden>-- SELECT HERE --</option>
 
       <option *ngFor="let course of selectedMajor.courses">
         {{course.name}}
@@ -80,7 +83,7 @@
     <input [(ngModel)]="courseName" id="newCourse" placeholder="Create a new course" class="form-control">
     <button (click)="createCourse(courseName)" class="form-control btn btn-info">Create</button>
   </div>
-  <div>
+  <div style="display: block" id="notProfessor">
     <button (click)="enroll(selectedCourse)" class="form-control btn btn-success">Enroll</button>
   </div>
 
